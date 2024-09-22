@@ -36,7 +36,7 @@ export default function Signin({ setIsLogin, setToken }) {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/api/signin", {
+      const response = await fetch("https://contestcalenderserver.onrender.com/api/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +45,6 @@ export default function Signin({ setIsLogin, setToken }) {
         body: JSON.stringify(user),
       });
       const data = await response.json();
-      console.log("api response signin", data);
       if (data.err === "Invalid credentials") {
         setError("Wrong email or password");
       } else if(data.err === "Missing required fields"){

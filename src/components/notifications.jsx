@@ -19,7 +19,7 @@ async function Notification({ item, isLogin }) {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/api/notifyUser", {
+      const response = await fetch("https://contestcalenderserver.onrender.com/api/notifyUser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,7 +27,6 @@ async function Notification({ item, isLogin }) {
         body: JSON.stringify(notificationData),
       });
       const data = await response.json();
-      console.log(data);
       if (data.err === "Register on telegram first") {
         toast("you have to registor on our telegram bot {codeArena_bot} first");
       } else if (response.ok) {

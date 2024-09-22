@@ -6,7 +6,6 @@ import { IoPerson } from "react-icons/io5";
 import { VscRobot } from "react-icons/vsc";
 
 export default function Header({ isLogin, setIsLogin }) {
-  console.log("header: ", isLogin)
   const navigate = useNavigate();
 
   const handleLogout = () => {

@@ -12,7 +12,7 @@ import icfpConferenceImg from "../assets/icpcc.png";
 let data;
 async function fetchAndStoreData() {
   try {
-    const response = await fetch('http://localhost:8080/api/getAllContest');
+    const response = await fetch('https://contestcalenderserver.onrender.com/api/getAllContest');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

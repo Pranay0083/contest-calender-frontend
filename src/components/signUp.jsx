@@ -45,9 +45,8 @@ export default function Signup() {
       setLoading(false);
       return;
     }
-    console.log(formData)
     try {
-      const response = await fetch("http://localhost:8080/api/signup", {
+      const response = await fetch("https://contestcalenderserver.onrender.com/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -58,20 +57,12 @@ export default function Signup() {
           password: formData.password,
         }),
       });
-      console.log("jane wala: ", JSON.stringify({
-        username: formData.username,
-        mail: formData.email,
-        password: formData.password,
-      }))
       const data = await response.json();
-      console.log("sign in :", data)
       if (data.status === "Missing required fields") {
         alert("email already exists or try again after some time");
       } else {
         navigate("/signin");
       }
-
-      console.log("API Response:", data);
 
       setLoading(false);
       setFormData({
