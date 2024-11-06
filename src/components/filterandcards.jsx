@@ -46,9 +46,9 @@ const FilteredContestList = ({
 
   const filteredData = useMemo(() => {
     if (activeFilters.has("all")) {
-      return data.objects; // If "all" is selected, return all data
+      return data; // If "all" is selected, return all data
     }
-    return data.objects.filter((item) => {
+    return data.filter((item) => {
       const platformName = platformNames[item.resource];
       const buttonId = buttonData.find(
         (button) => button.name === platformName

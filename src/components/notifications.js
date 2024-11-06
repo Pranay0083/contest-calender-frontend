@@ -1,6 +1,7 @@
-import ContestData from "./data";
+// import ContestData from "./data";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { platformNames } from "../constants";
 
 async function Notification({ item, isLogin }) {
   if (isLogin) {
@@ -9,11 +10,10 @@ async function Notification({ item, isLogin }) {
     const timeUntilContest = contestStart - now;
     const notificationTime = 10000;
     // const notificationTime = Math.max(timeUntilContest - 1800000, 0); // 30 minutes before contest, or immediately if less than 30 minutes
-
     const notificationData = {
       userId: localStorage.getItem("token") || sessionStorage.getItem("token"),
       message: `Reminder: "${item.event}" contest on ${
-        ContestData.platformNames[item.resource]
+        platformNames[item.resource]
       } starts soon!`,
       time: notificationTime,
     };
