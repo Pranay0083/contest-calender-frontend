@@ -36,7 +36,7 @@ export default function Signin({ setIsLogin, setToken }) {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/auth/signin", {
+      const response = await fetch("https://contestcalendarscraper.onrender.com/api/auth/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

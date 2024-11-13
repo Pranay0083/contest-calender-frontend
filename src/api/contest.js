@@ -1,4 +1,4 @@
 export async function getContest() {
-    const response = await fetch('http://localhost:3000/getAllContests');
+    const response = await fetch('https://contestcalendarscraper.onrender.com/api/contests/getAllContests');
     return await response.json();
 }

@@ -19,7 +19,7 @@ async function Notification({ item, isLogin }) {
     };
 
     try {
-      const response = await fetch("https://contestcalenderserver.onrender.com/api/notifyUser", {
+      const response = await fetch("https://contestcalendarscraper.onrender.com/api/notification/set", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
