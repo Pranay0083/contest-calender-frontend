@@ -1,21 +1,12 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
-import { IoIosLogOut } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
 import { VscRobot } from "react-icons/vsc";
+import { CgProfile } from "react-icons/cg";
 
 export default function Header({ isLogin, setIsLogin }) {
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    sessionStorage.removeItem("token");
-    localStorage.removeItem("isLogin");
-    sessionStorage.removeItem("isLogin");
-    setIsLogin(false);
-    navigate("/");
-  };
 
   return (
     <div className="header">
@@ -44,7 +35,12 @@ export default function Header({ isLogin, setIsLogin }) {
           </div>
           <div className="link">
             {isLogin ? (
-              <p onClick={handleLogout}>Logout</p>
+              <>
+              <p onClick={()=>{
+                navigate('/profile');
+              }}>profile</p>
+              </>
+              
             ) : (
               <Link to="/signin">Sign In</Link>
             )}
@@ -71,8 +67,10 @@ export default function Header({ isLogin, setIsLogin }) {
           </div>
           <div className="icon_link">
             {isLogin ? (
-              <div onClick={handleLogout}>
-                <IoIosLogOut style={{ width: "50%", height: "100%" }} />
+              <div onClick={()=>{
+                navigate('/profile');
+              }}>
+                <CgProfile style={{ width: "50%", height: "100%" }}/>
               </div>
             ) : (
               <div className="iconwraper">

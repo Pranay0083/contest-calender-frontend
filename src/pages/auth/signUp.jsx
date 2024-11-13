@@ -46,7 +46,7 @@ export default function Signup() {
       return;
     }
     try {
-      const response = await fetch("https://contestcalenderserver.onrender.com/api/signup", {
+      const response = await fetch("http://localhost:3000/api/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

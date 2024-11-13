@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import Notification from "./notifications";
+import Notification from "../Toaster/notifications";
 import { ToastContainer } from "react-toastify";
 
 const FilteredContestList = ({
@@ -55,7 +55,7 @@ const FilteredContestList = ({
       )?.id;
       return buttonId && activeFilters.has(buttonId);
     });
-  }, [data.objects, activeFilters, platformNames, buttonData]);
+  }, [activeFilters, platformNames, buttonData, data]);
 
   const isAllSelected = activeFilters.has("all");
 
@@ -97,12 +97,24 @@ const FilteredContestList = ({
               </div>
               <div className="contest_details">
                 <p className="date">
-                  At {new Date(item.start).toLocaleString()}
+                  At{" "}
+                  {(() => {
+                    const date = new Date(item.date);
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed, so add 1
+                    const day = String(date.getDate()).padStart(2, "0");
+                    const hours = String(date.getHours()).padStart(2, "0");
+                    const minutes = String(date.getMinutes()).padStart(2, "0");
+                    const seconds = String(date.getSeconds()).padStart(2, "0");
+                    return `${year}-${month}-${day}`;
+                  })()}
                 </p>
-                <p className="duration">
-                  3hrs
+                <p className="time">
+                  {(() => {
+                    const date = new Date(item.date);
+                    return date.toLocaleTimeString();
+                  })()}
                 </p>
-                <p className="problems">Problems: {item.n_problems}</p>
               </div>
               <div className="buttons">
                 <button onClick={() => Notification({ item, isLogin })}>

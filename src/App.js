@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Footer from './components/footer';
-import Header from './components/header';
+import Footer from './components/layout/footer';
+import Header from './components/layout/header';
 import { usePointerSync } from './hooks/pointer';
-import Signup from './components/signUp';
-import Signin from './components/signIn';
-import Home from './components/home';
+import Signup from './pages/auth/signUp';
+import Signin from './pages/auth/signIn';
+import Home from './pages/Home/home';
+import Profile from './pages/Profile/ProfilePage'
+import Admin from './pages/Admin/Admin';
 
 function App() {
   usePointerSync();
@@ -24,7 +26,9 @@ function App() {
       <Header isLogin={isLogin} setIsLogin={setIsLogin} />
       <Routes>
         <Route path="/" element={<Home isLogin={isLogin} />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/signin" element={<Signin 
           setToken={setToken}
           setIsLogin={setIsLogin} />} />
