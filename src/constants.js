@@ -13,7 +13,7 @@ export const buttonData = [
     { id: "codeforces", name: "Codeforces" },
     { id: "codechef", name: "CodeChef" },
   ];
-  
+
   // Object for mapping platform URLs to names
   export const platformNames = {
     "https://leetcode.com/": "LeetCode",

@@ -3,9 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import { VscRobot } from "react-icons/vsc";
-import { CgProfile } from "react-icons/cg";
+import { LogOut } from "lucide-react";
 
-export default function Header({ isLogin, setIsLogin }) {
+export default function Header({ isLogin, setisLogin }) {
   const navigate = useNavigate();
 
   return (
@@ -26,7 +26,7 @@ export default function Header({ isLogin, setIsLogin }) {
           </div>
           <div className="link">
             <a
-              href="https://github.com/pranay0083"
+              href="https://github.com/Pranay0083/scrapperContestCalendar"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -37,8 +37,11 @@ export default function Header({ isLogin, setIsLogin }) {
             {isLogin ? (
               <>
               <p onClick={()=>{
-                navigate('/profile');
-              }}>profile</p>
+                sessionStorage.clear();
+                localStorage.clear();
+                setisLogin(false);
+                navigate('/');
+              }}>logout</p>
               </>
               
             ) : (
@@ -68,9 +71,12 @@ export default function Header({ isLogin, setIsLogin }) {
           <div className="icon_link">
             {isLogin ? (
               <div onClick={()=>{
-                navigate('/profile');
+                sessionStorage.clear();
+                localStorage.clear();
+                setisLogin(false);
+                navigate('/');
               }}>
-                <CgProfile style={{ width: "50%", height: "100%" }}/>
+                <LogOut style={{ width: "50%", height: "100%" }}/>
               </div>
             ) : (
               <div className="iconwraper">

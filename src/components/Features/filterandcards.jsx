@@ -64,6 +64,7 @@ const FilteredContestList = ({
       <ToastContainer />
       <div className="filter">
         <button
+        key={"all"}
           onClick={() => toggleFilter("all")}
           className={`${isAllSelected ? "clicked" : ""}`}
         >
@@ -84,7 +85,7 @@ const FilteredContestList = ({
       <div className="card_container">
         <div className="main">
           {filteredData.map((item) => (
-            <div key={item.id} className="card">
+            <div key={item._id} className="card">
               <div className="image">
                 <img
                   src={platformImages[platformNames[item.resource]]}
@@ -103,9 +104,6 @@ const FilteredContestList = ({
                     const year = date.getFullYear();
                     const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed, so add 1
                     const day = String(date.getDate()).padStart(2, "0");
-                    const hours = String(date.getHours()).padStart(2, "0");
-                    const minutes = String(date.getMinutes()).padStart(2, "0");
-                    const seconds = String(date.getSeconds()).padStart(2, "0");
                     return `${year}-${month}-${day}`;
                   })()}
                 </p>

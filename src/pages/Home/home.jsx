@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-// import ContestData from "./data";
 import FilteredContestList from "../../components/Features/filterandcards";
 import { getContest } from "../../api/contest";
 import { buttonData, platformImages, platformNames } from "../../constants";
+import { sortEventsByDate } from "../../utils/SortContests";
 
 function Home({ isLogin }) {
   const [contestData, setContestData] = useState([]);
@@ -10,7 +10,7 @@ function Home({ isLogin }) {
     try{
       getContest()
       .then(({objects}) => {
-        // console.log(objects)
+        sortEventsByDate(objects);
         setContestData(objects);
       });
     }

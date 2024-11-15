@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { signUp } from "../../api/contest";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -46,22 +47,13 @@ export default function Signup() {
       return;
     }
     try {
-      const response = await fetch("https://contestcalendarscraper.onrender.com/api/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: formData.username,
-          mail: formData.email,
-          password: formData.password,
-        }),
-      });
-      const data = await response.json();
-      if (data.status === "Missing required fields") {
-        alert("email already exists or try again after some time");
-      } else {
-        navigate("/signin");
+      const response = await signUp(formData);
+      if (response.message === "User already exists"){
+        setError("User already exists");
+      } else if (response.user){
+        setError("User created successfully");
+        localStorage.setItem("token", response.token);
+        navigate("/");
       }
 
       setLoading(false);

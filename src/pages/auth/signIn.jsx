@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { signIn } from "../../api/contest";
 
-export default function Signin({ setIsLogin, setToken }) {
+export default function Signin({ setIsLogin }) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -31,35 +32,28 @@ export default function Signin({ setIsLogin, setToken }) {
     }
 
     const user = {
-      mail: formData.email,
+      email: formData.email,
       password: formData.password,
     };
 
     try {
-      const response = await fetch("https://contestcalendarscraper.onrender.com/api/auth/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          accept: "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-      const data = await response.json();
-      if (data.err === "Invalid credentials") {
+      const response = await signIn(user);
+      if (response.message === "Invalid credentials") {
         setError("Wrong email or password");
-      } else if(data.err === "Missing required fields"){
+      } else if(response.message === "Missing required fields"){
         setError("we are fixing this issue. Please try again after some time");
       }else {
         setLoading(false)
         setIsLogin(true);
         if (formData.keepSignedIn) {
-          localStorage.setItem("token", data.token);
+          localStorage.setItem("userId", response.user._id);
+          localStorage.setItem("token", response.token);
           localStorage.setItem("isLogin", true);
         } else {
-          sessionStorage.setItem("token", data.token);
-          localStorage.setItem("isLogin", true);
+          sessionStorage.setItem("userId", response.user);
+          sessionStorage.setItem("token", response.token);
+          sessionStorage.setItem("isLogin", true);
         }
-        setToken(data.token);
         navigate("/");
       }
     } catch (error) {
