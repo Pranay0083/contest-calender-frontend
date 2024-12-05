@@ -73,6 +73,7 @@ Contest Calendar is a web application that aggregates upcoming coding contests f
 
 ## API Integration
 
+Server Link: **https://github.com/Pranay0083/scrapperContestCalendar**.
 The application interacts with a backend server hosted at [https://contestcalendarscraper.onrender.com](https://contestcalendarscraper.onrender.com). Key API endpoints include:
 
 ### Contests
