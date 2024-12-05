@@ -82,6 +82,8 @@ const FilteredContestList = ({
           </button>
         ))}
       </div>
+      <div className="updates">**Data last updated on Friday 6 december 2024 1:00:00 AM</div>
+      <div className="updates">Important: Notifications services are down for some time due to hosting issues. We are trying our best to give you the best experience.</div>
       <div className="card_container">
         <div className="main">
           {filteredData.map((item) => (
