@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+## Inspiration
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+As a student passionate about competitive programming, I noticed that many of my peers often miss coding contests simply because they are unaware of them. With contests hosted across various platforms like Codeforces, LeetCode, and CodeChef, keeping track of them can be overwhelming. To solve this problem, I created **Contest Calendar** — a centralized platform to help students and programmers stay updated, set reminders, and never miss an opportunity to compete and learn.
 
-## Available Scripts
+## Future Updates
 
-In the project directory, you can run:
+Here are some exciting features planned for future updates to enhance the user experience:
 
-### `npm start`
+- **User Progress Tracking**: Integrate user profiles from platforms like Codeforces, LeetCode, and CodeChef to fetch their contest data and maintain a record of their progress over time.
+- **Leaderboard**: Introduce a leaderboard where users can compare their rankings based on contest participation, performance, or accumulated points.
+- **Custom Contest Feeds**: Allow users to personalize their feed by selecting specific platforms or types of contests they are interested in.
+- **Enhanced Notifications**: Expand reminder options to include email and in-app notifications in addition to Telegram bot alerts.
+- **Social Sharing**: Enable users to share upcoming contests and their progress with friends directly from the platform.
+- **Mobile App**: Develop a mobile version of the application for easier access and on-the-go notifications.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+These updates aim to make **Contest Calendar** a comprehensive tool for competitive programmers.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Contest Calendar
 
-### `npm test`
+Contest Calendar is a web application that aggregates upcoming coding contests from various competitive programming platforms. It provides users with a centralized place to view, filter, and set reminders for contests. The application includes user authentication, an admin dashboard, and integration with a Telegram bot for notifications.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- **Contest Listings**: Browse upcoming coding contests from platforms like LeetCode, CodeChef, Codeforces, AtCoder, GeeksforGeeks, and Coding Ninjas.
+- **Filtering**: Filter contests based on the platform to find those most relevant to you.
+- **User Authentication**: Sign up and log in to access personalized features.
+- **Contest Reminders**: Logged-in users can set reminders for contests and receive notifications via the integrated Telegram bot.
+- **Admin Dashboard**: Admin users can manage user accounts, including editing and deleting users.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/contest-calendar.git
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Navigate to the project directory:
+   ```bash
+   cd contest-calendar
+   ```
 
-### `npm run eject`
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Usage
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Running the Application
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Start the development server:
+   ```bash
+   npm start
+   ```
+2. The application will be available at [http://localhost:3000](http://localhost:3000).
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Building for Production
 
-## Learn More
+1. Create a production build:
+   ```bash
+   npm run build
+   ```
+2. The optimized build will be in the `build` directory.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Technologies Used
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **React**: Front-end library for building user interfaces.
+- **React Router DOM**: For routing between pages.
+- **React Icons**: Icon library for React.
+- **Lucide React**: Additional icons.
+- **React Toastify**: For toast notifications.
+- **Fetch API**: For making HTTP requests to the backend API.
 
-### Code Splitting
+## API Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The application interacts with a backend server hosted at [https://contestcalendarscraper.onrender.com](https://contestcalendarscraper.onrender.com). Key API endpoints include:
 
-### Analyzing the Bundle Size
+### Contests
+- `GET /api/contests/getall`: Fetch all contests.
+- `POST /api/contests/scrape`: Trigger scraping of contest data.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Users
+- `GET /api/users/getAll`: Retrieve all users (admin only).
+- `PUT /api/users/edit/:id`: Edit user information.
+- `DELETE /api/users/delete/:id`: Delete a user.
 
-### Making a Progressive Web App
+### Authentication
+- `POST /api/auth/signup`: Register a new user.
+- `POST /api/auth/signin`: Log in an existing user.
+- `PUT /api/auth/changepassword`: Change user password.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Notifications
+- `POST /api/notification/set/:id`: Set a contest reminder.
 
-### Advanced Configuration
+## Telegram Bot Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+To receive contest reminders, users need to register with the Telegram bot **ContestCalenderBot**. After registration, users can set reminders within the app, and notifications will be sent via the bot.
 
-### Deployment
+## Folder Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- `src/`: Contains the source code.
+  - `components/`: Reusable components like Header, Footer, and Notification.
+  - `pages/`: Different pages like Home, Admin, Sign Up, and Sign In.
+  - `api/`: Functions to interact with the backend API.
+  - `constants.js`: Contains constants used across the app.
+  - `index.css`: Global CSS styles.
+- `App.js`: Main application component.
+- `index.js`: Entry point of the application.
 
-### `npm run build` fails to minify
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## Contact
+
+For questions or support, please contact **pranay.vishwakarma7400@gmail.com**.
