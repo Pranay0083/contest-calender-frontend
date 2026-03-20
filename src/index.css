@@ -294,9 +294,23 @@ button::after {
 
 .loader-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: calc(100vh - 100px);
+  gap: 16px;
+}
+
+.loader-text {
+  color: #b0b0b0;
+  font-size: 0.95rem;
+  text-align: center;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
 .loader {

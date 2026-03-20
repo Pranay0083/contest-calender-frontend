@@ -8,6 +8,7 @@ const FilteredContestList = ({
   platformNames,
   platformImages,
   isLogin,
+  lastScraped,
 }) => {
   const [activeFilters, setActiveFilters] = useState(new Set(["all"]));
 
@@ -82,8 +83,11 @@ const FilteredContestList = ({
           </button>
         ))}
       </div>
-      <div className="updates">**Data last updated on Friday 6 december 2024 1:00:00 AM</div>
-      <div className="updates">Important: Notifications services are down for some time due to hosting issues. We are trying our best to give you the best experience.</div>
+      <div className="updates">
+        {lastScraped
+          ? `Data last updated on ${new Date(lastScraped).toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true })}`
+          : 'Fetching last update time...'}
+      </div>
       <div className="card_container">
         <div className="main">
           {filteredData.map((item) => (

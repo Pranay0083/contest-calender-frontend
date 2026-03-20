@@ -6,12 +6,14 @@ import { sortEventsByDate } from "../../utils/SortContests";
 
 function Home({ isLogin }) {
   const [contestData, setContestData] = useState([]);
+  const [lastScraped, setLastScraped] = useState(null);
   useEffect(() => {
     try{
       getContest()
-      .then(({objects}) => {
+      .then(({objects, lastScraped}) => {
         sortEventsByDate(objects);
         setContestData(objects);
+        setLastScraped(lastScraped);
       });
     }
     catch(err){
@@ -29,10 +31,12 @@ function Home({ isLogin }) {
           platformNames={platformNames}
           platformImages={platformImages}
           isLogin={isLogin}
+          lastScraped={lastScraped}
         />
       ) : (
         <div className="loader-container">
           <div className="loader"></div>
+          <p className="loader-text">Server is waking up, this may take a moment...</p>
         </div>
       )}
     </>
