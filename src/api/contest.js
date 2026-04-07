@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000/api';
+const BASE_URL = 'https://contestcalendarscraper.onrender.com/api';
 
 // /contest
 export async function getContest() {
